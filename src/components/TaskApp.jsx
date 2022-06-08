@@ -42,6 +42,25 @@ const TaskApp = () => {
   ]);
 const [completed,setCompleted]=useState(0)
 
+const createTask=(name)=>{
+  let count = 0;
+for (let i = 0; i < allTask.length; i++) {
+  if (allTask[i].text !== name) {
+    count++;
+  }
+}
+if (count === allTask.length) {
+  let payload = {
+    text: name,
+    done: false,
+    count: 1,
+    id: allTask.length,
+  }
+  setAllTask([...allTask,payload])
+}
+}
+
+
   const check = (id) => {
     let arr = [];
     let c=0;
@@ -89,7 +108,7 @@ const [completed,setCompleted]=useState(0)
     <div data-testid="task-app" className={styles.taskApp}>
       {/* Header */}
       <TaskHeader tasks={allTask} completed={completed} />
-      <AddTask />
+      <AddTask tasks={allTask} createTask={createTask} />
       <Tasks tasks={allTask} counter={counter} check={check} deleteItem={deleteItem}  />
     </div>
   );
