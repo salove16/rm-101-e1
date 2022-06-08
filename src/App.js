@@ -1,6 +1,15 @@
 import React from "react";
+import "./App.css"
+import TaskApp from "./components/TaskApp"
+
 function App() {
-  return <div>{/* Code Here */}</div>;
+  return <div className="App">
+    <h1>Todo List</h1>
+ < TaskApp/>
+
+
+    {/* Code Here */}
+    </div>;
 }
 
 export default App;
