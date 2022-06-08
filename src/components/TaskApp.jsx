@@ -40,17 +40,25 @@ const TaskApp = () => {
       count: 200,
     },
   ]);
+const [completed,setCompleted]=useState(0)
 
   const check = (id) => {
-    let newArray = [];
+    let arr = [];
+    let c=0;
     for (let i = 0; i < allTask.length; i++) {
       if (allTask[i].id == id) {
         allTask[i].done = !allTask[i].done;
       }
-      // console.log(allTask[i].count);
-      newArray.push(allTask[i]);
+      if(allTask[i].done===true){
+        c++;
+      }
+
+   
+      arr.push(allTask[i]);
     }
-    setAllTask(newArray);
+    console.log(arr,c);
+    setAllTask(arr);
+    setCompleted(c)
   };
 
   const counter = (count, id) => {
@@ -60,18 +68,29 @@ const TaskApp = () => {
       if (allTask[i].id == id) {
         allTask[i].count = allTask[i].count + count;
       }
-      // console.log(allTask[i].count);
+    
       arr.push(allTask[i]);
     }
     setAllTask(arr);
   };
+  const deleteItem=(id)=>{
+    let arr=[]
+    for (let i = 0; i < allTask.length; i++) {
+      if (allTask[i].id === id) {
+        continue;
+      }
+    
+      arr.push(allTask[i]);
+    } 
+    setAllTask(arr)
+  }
   // NOTE: do not delete `data-testid` key value pair
   return (
     <div data-testid="task-app" className={styles.taskApp}>
       {/* Header */}
-      <TaskHeader tasks={allTask} />
+      <TaskHeader tasks={allTask} completed={completed} />
       <AddTask />
-      <Tasks tasks={allTask} counter={counter} check={check} />
+      <Tasks tasks={allTask} counter={counter} check={check} deleteItem={deleteItem}  />
     </div>
   );
 };

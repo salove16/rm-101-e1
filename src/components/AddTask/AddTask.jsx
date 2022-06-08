@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./addTask.module.css";
 
 const AddTask = () => {
- 
+const [addtask,setAddtask]=useState() 
 
  
   // NOTE: do not delete `data-testid` key value pair
